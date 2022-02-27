@@ -1,29 +1,29 @@
-const getSecondaryInfo = (title, data) => {
-    if (title === "Manager") {
-        return `Office Number: ${data}`;
+const getSecondaryInfo = (info) => {
+    if (info.getRole() === "Manager") {
+        return `Office Number: ${info.getNumber()}`;
     } else
-    if (title === "Engineer") {
-        return `Github: <a href="https://github.com/${data}" target="_blank">${data}</a>`;
+    if (info.getRole() === "Engineer") {
+        return `Github: <a href="https://github.com/${info.getGithub()}" target="_blank">${info.getGithub()}</a>`;
     } else
-    if (title === "Student") {
-        return `School: ${data}`;
+    if (info.getRole() === "Intern") {
+        return `School: ${info.getSchool()}`;
     }
 }
 
 const displayTeamMember = (templateData) => {
     let str = "";
     templateData.forEach((employeeInfo) => {
-    const { name, title, id, email, secondaryInfo } = employeeInfo;
+    const { name, id, email, secondaryInfo } = employeeInfo;
     str += `
     <div class="card">
 		<div class="card-header">
 			<p class="name">${name}</p>
-			<p class="title">${title}</p>
+			<p class="role">${employeeInfo.getRole()}</p>
 		</div>
 		<div class="card-content">
 			<div class="row">ID: ${id}</div>
 			<div class="row">Email: <a href="mailto:${email}">${email}</a></div>
-			<div class="row">${getSecondaryInfo(title, secondaryInfo)}</div>
+			<div class="row">${getSecondaryInfo(employeeInfo)}</div>
 		</div>
 	</div>
     `;
