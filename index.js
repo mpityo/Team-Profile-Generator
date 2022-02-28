@@ -7,7 +7,7 @@ const mock = require('./lib/mock_team');
 
 addMember()
     .then((teamInformation) => {
-        return pageTemplate(mock);
+        return pageTemplate(teamInformation); // Replace with mock for quick testing and display
     })
     .then((htmlData) => {
         return writeFile(htmlData);

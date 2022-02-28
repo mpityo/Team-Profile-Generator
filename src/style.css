@@ -8,9 +8,10 @@ body {
 }
 
 header {
-	background: white;
-	margin: 0;
+	background: lightseagreen;
+	margin: 2rem 2rem 0;
 	padding: 2rem 0;
+	border-radius: 16px;
 }
 
 header h1 {
@@ -36,23 +37,20 @@ main {
 
 .card-header {
 	background-color: lightseagreen;
-	border-top-left-radius: 8px;
-	border-top-right-radius: 8px;
 	padding: 10px;
 	margin: 0;
 }
 .card-header > * {
 	color: white;
+	padding: 0;
 }
 
 .card-header .name {
 	font-size: 1.75rem;
 	margin: 0;
-	padding: 0;
 }
-.card-header .title {
-	margin: 0;
-	padding: 0;
+.card-header .role {
+	margin: 3px 0 16px 0;
 }
 
 .card-content {
