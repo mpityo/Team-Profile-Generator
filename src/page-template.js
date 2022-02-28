@@ -10,15 +10,23 @@ const getSecondaryInfo = (info) => {
     }
 }
 
-const displayTeamMember = (templateData) => {
-    let str = "";
-    templateData.forEach((employeeInfo) => {
-    const { name, id, email, secondaryInfo } = employeeInfo;
-    str += `
+const displayTitleInfo = (role) => {
+    if (role === "Manager") {
+        return `&#9749; ${role}`;
+    } else if (role === "Engineer") {
+        return `&#128083; ${role}`;
+    } else {
+        return `&#127891; ${role}`;
+    }
+}
+
+const displayTeamMember = (employeeInfo) => {
+    const { name, id, email } = employeeInfo;
+    return `
     <div class="card">
 		<div class="card-header">
 			<p class="name">${name}</p>
-			<p class="role">${employeeInfo.getRole()}</p>
+			<p class="role">${displayTitleInfo(employeeInfo.getRole())}</p>
 		</div>
 		<div class="card-content">
 			<div class="row">ID: ${id}</div>
@@ -27,8 +35,18 @@ const displayTeamMember = (templateData) => {
 		</div>
 	</div>
     `;
-    });
-    return str;
+}
+
+const handleTeamMember = (templateData) => {
+    if (templateData.length > 1) {
+        let str = "";
+        templateData.forEach((employeeInfo) => {
+            str += displayTeamMember(employeeInfo);
+        });
+        return str;
+    } else {
+        return displayTeamMember(templateData[0]);
+    } 
 }
 
 module.exports = (templateData) => {
@@ -48,7 +66,7 @@ return `
 </header>
 
 <main>
-    ${displayTeamMember(templateData)}
+    ${handleTeamMember(templateData)}
 </main>
 
 </body>
